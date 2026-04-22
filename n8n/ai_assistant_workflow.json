@@ -1,0 +1,78 @@
+{
+  "name": "AI Assistant - Incoming Trigger Demo",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "assistant-inbox",
+        "responseMode": "responseNode",
+        "httpMethod": "POST"
+      },
+      "id": "Webhook_1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        260,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8000/chat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{{\\n  \\\"user_id\\\": \\\"n8n-user\\\",\\n  \\\"message\\\": $json.body.message,\\n  \\\"channel\\\": \\\"n8n\\\"\\n}}}"
+      },
+      "id": "HTTP_Request_1",
+      "name": "Call Backend Chat",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "Respond_1",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        780,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Call Backend Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Backend Chat": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1"
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Executive Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Executive Assistant</h1>
+      <p>Chat, tasks, and action controls from your browser.</p>
+    </header>
+
+    <section class="card">
+      <h2>Assistant Chat</h2>
+      <textarea id="message" placeholder="Ask your assistant something..."></textarea>
+      <button id="sendBtn">Send</button>
+      <pre id="replyBox"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Create Task</h2>
+      <input id="taskTitle" placeholder="Task title" />
+      <input id="taskDesc" placeholder="Task description" />
+      <button id="taskBtn">Create Task</button>
+      <pre id="taskBox"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Facebook Page Draft/Post</h2>
+      <textarea id="fbMessage" placeholder="Write a Facebook Page post..."></textarea>
+      <button id="fbBtn">Publish</button>
+      <pre id="fbBox"></pre>
+    </section>
+  </div>
+
+    <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
